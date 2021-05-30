@@ -1,0 +1,29 @@
+.Cell {
+    height: 70px;
+    width: 70px;
+    border-radius: 1px;
+    background-color: #263238;
+    transition: all 0.7s ease;
+  }
+  
+  .Cell__lit {
+    background-color: #263238;
+    opacity: 1;
+    background-image: url('../../assets/toasty.png');
+    background-size: cover;
+    background-position: center;
+    animation: toastenter 0.4s 0s 1;
+  
+  }
+
+  @keyframes toastenter {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+
+  

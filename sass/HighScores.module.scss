@@ -1,0 +1,95 @@
+.highScores {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    //overflow: visible !important;
+
+    &__title {
+        font-size: 6rem;
+        color: #fff;
+    }
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+        width: 95%;
+        gap: 2rem;
+        @media (max-width: 500px){
+            flex-direction: column;
+        }
+        
+    }
+
+    &__catagory {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        height: 45rem;
+        border: 0.5px solid #eeeeee;
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 15px;
+        //box-shadow: 0 1px 1px 0 #8C8C8C;
+        &:last-of-type {
+            margin-bottom: 3rem;
+        }
+        &__header {
+            font-size: 3.5rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            width: 100%;
+            color: #fff;
+        }
+        &__titles {
+            // border-bottom: 1px solid gray;
+            justify-content: space-around;
+            width: 90%;
+            justify-items: start;
+            font-size: 2.5rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 0.2fr;
+            border-bottom: 2.5px solid #eeeeee;
+            padding: 2rem 0;
+            font-weight: 400;
+            @media (max-width: 500px){
+                grid-template-columns: 1fr 3fr 1fr 1fr 0.2fr;
+            }
+        }
+        &__box {
+            padding-top: 1rem;
+            width: 100%;
+            height: 70%;
+            display: grid;
+            justify-items: center;
+            align-items: center;
+            align-content: flex-start;
+
+            
+        }
+    }
+}
+
+.btn {
+    margin: 3rem 0;
+    background-color: #fff;
+    width: 24rem;
+    height: 6rem;
+    opacity: 0.5;
+    //box-shadow: 5px 10px #888888;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: rgb(254, 105, 132);
+    cursor: pointer;
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+.nowinners {
+    font-size: 2rem;
+
+}
+

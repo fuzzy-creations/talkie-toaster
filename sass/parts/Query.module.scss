@@ -1,0 +1,12 @@
+.query {
+    grid-area: query;
+    &__input {
+        border-radius: 10px;
+        width: 30rem;
+        border: none;
+        padding: 1rem;
+        font-size: 2rem;
+        background-color: #eeeeee;
+        color: rgb(112, 112, 112);
+    }
+}

@@ -1,0 +1,319 @@
+$bg-color: rgb(254, 105, 132);
+$base-shadow: rgb(233, 172, 189);
+$base-shadow-t: rgba(233, 172, 189, 0);
+$base-color: rgb(255, 255, 255);
+$base-color-t: rgba(255, 255, 255, 0);
+$leg-color: rgb(66, 49, 57);
+
+$toaster-width: 31em;
+$body-height: 12em;
+$body-bg: rgb(246, 42, 64);
+$body-shadow: rgb(189, 0, 74);
+
+$eye-color: rgb(0, 0 , 0);
+$eye-height: 4em;
+$eye-width: 2em;
+$pupil-height: 2.5em;
+$pupil-width: 1.5em;
+$shdaow-width: -6em;
+$switch-width: 3em;
+$switch-color: rgb(239, 198, 222);
+
+
+.base {
+	height: 2em;
+	width: $toaster-width;
+	background:
+		radial-gradient(100% 100% at 100% 50%, $base-shadow 49%, $base-shadow-t 50%) 0 0 / 2em 2em,
+		linear-gradient($base-shadow 8em, $base-shadow-t 0) 2em 0 / 8em 2em,
+		radial-gradient(100% 100% at 0 50%, $base-shadow 49%, $base-shadow-t 50%) 10em 0 / 2em 2em,
+		linear-gradient($base-color 20em, $base-color-t 0) 10em 0 / 20em 2em,
+		radial-gradient(100% 100% at 0 50%, $base-color 49%, $base-color-t 50%) 30em 0 / 2em 2em;
+	background-repeat: no-repeat;
+	
+	&::before, &::after {
+		content: '';
+		position: absolute;
+		background: $leg-color;
+		height: 1em; width: 4.5em;
+		top: 100%; left: 13%;
+		border-radius: 0 0 40% 40% / 0 0 200% 200%;
+	}
+	
+	&::after {
+		left: calc(100% - 13% - 3em);
+	}
+}
+
+.logo {
+	position: absolute;
+	width: 5rem;
+	height: 5rem;
+	border-radius: 50px;
+	background-image: url('../../assets/red-dwarf-logo.png');
+	background-position: center;
+	background-size: cover;
+	right: 10px;
+	top: 15px;
+	opacity: 0.75;
+	cursor: pointer;
+}
+
+.body {
+	height: $body-height;
+	width: $toaster-width * .7;
+    margin-left: 7.6em;
+	background: $body-bg;
+	border-radius: 30% 30% 0 0 / 35%;
+	box-shadow: $shdaow-width 0 $body-shadow;
+	display: flex; 
+	align-items: center;
+	justify-content: center;
+	&__animated {
+        animation: reduce-height 10s linear 1;
+        @keyframes reduce-height {
+            17% { 
+                height: $body-height;
+            }
+            18% { height: $body-height - 1.4em ; }
+            58% { height: $body-height - 1.4em ; }
+            60% { height: $body-height ; }
+        }
+	}
+	
+	.eye {
+		position: absolute;
+		background: #fff;
+		height: $eye-height;
+		width: $eye-width;
+		border-radius: 90% / 50%; 
+		box-shadow: -5px 3px rgba(0, 0, 0, 0.4);
+		left: 30%;
+		top: 25%;
+        --rotation: 45deg;
+
+        &__animated {
+
+            animation: eye-change 10s linear 1, eye-shake 10s linear 1;
+            @keyframes eye-shake {
+                $n: true;
+                @for $i from 17 through 57 {
+                    @if $n {
+                        #{$i}% {
+                            top: 25%; 
+                            left: 30%;
+                            $n: false;
+                        }
+                    } @else {
+                        #{$i}% {
+                            top: 23%; 
+                            left: 28%;
+                            $n: true;
+                        }
+                    }
+                }
+            }
+            @keyframes eye-change {
+                15% { 
+                    box-shadow: -5px 3px rgba(0, 0, 0, 0.4);
+                    background: #fff;
+                    border-right: none;
+                    border-top: none;
+                    border-radius: 90% / 50%;
+                    height: $eye-height;
+                    transform: none;
+                }
+                15.2% { 
+                    box-shadow: none;
+                    background: transparent;
+                    border-radius: 0 / 0;
+                    border-right: .5em solid black;
+                    border-top: .5em solid black;
+                    height: $eye-width;
+                    transform: rotateZ(var(--rotation));
+                }
+                56% {
+                    box-shadow: none;
+                    background: transparent;
+                    border-radius: 0 / 0;
+                    border-right: .5em solid black;
+                    border-top: .5em solid black;
+                    height: $eye-width;
+                    transform: rotateZ(var(--rotation));
+                }
+                
+                57% {
+                    box-shadow: -5px 3px rgba(0, 0, 0, 0.4);
+                    background: #fff;
+                    border-right: none;
+                    border-top: none;
+                    border-radius: 90% / 50%;
+                    height: $eye-height;
+                    transform: none;
+                }
+            }
+        }
+        
+
+		
+		&:nth-of-type(2) {
+			margin-left: 6em;
+			--rotation: -135deg;
+		}
+		
+		&__eyeball {
+			position: absolute;
+			top: 50%; left: 50%;
+			background: black;
+			border-radius: 90% / 50%;
+			height: $pupil-height; width: $pupil-width;
+            transform: translate(-50%, -50%);
+            animation: eye-shift 10s ease-in-out infinite;
+			@keyframes eye-shift {
+				5% { left: 50%; }
+				8% { left: 3.5*$pupil-width/4; }
+				11% { left: 3.5*$pupil-width/4; }
+				13% { left: 50%; }
+			}
+           
+            &__animated {
+                animation: eye-move 10s ease-in-out 1;
+                @keyframes eye-move {
+                    5% { left: 50%; }
+                    8% { left: 3.5*$pupil-width/4; }
+                    11% { left: 3.5*$pupil-width/4; }
+                    13% { left: 50%; }
+                    15% { opacity: 1; }
+                    16% { opacity: 0; }
+                    56% { opacity: 0; }
+                    57% { opacity: 1; }
+                    66% { top: 50%; }
+                    67% { top: $pupil-height/2; }
+                    75% { top: $pupil-height/2; }
+                    82% { top: 50%; }
+			    }
+            }
+
+			
+		}
+	}
+	
+	.mouth {
+		width: 6em;
+		height: 3em;
+		margin-top: 8em; margin-right: 1em;
+		background: radial-gradient(100% 200% at 50% 0, transparent 1.5em, black 1.55em, black 2em, transparent 2.05em) 50% 0 / 6em 3em;
+		background-repeat: no-repeat;
+		
+		&::before, &::after {
+			content: '';
+			position: absolute;
+			height: 1em; width: 2.5em;
+			border-radius: 50%;
+			background: darken($body-bg, 15%);
+			opacity: 0;
+			animation: show-dimples 10s linear infinite;
+			@keyframes show-dimples {
+				20% { opacity: 0; }
+				69% { opacity: 1; }
+				80% { opacity: 0; }
+			}
+			
+        }
+        
+		
+		&::before {
+			left: -$toaster-width * .7/4;
+		}
+		
+		&::after {
+			left: $toaster-width * .7/2.7;
+		}
+	}
+	
+	.switch {
+		position: absolute;
+		left: -3em - ($switch-width/4);
+		margin-top: 1em;
+		height: $body-height * .5;
+		width: 1.2em;
+		box-shadow: inset .5em 0 1px rgb(155, 8, 73);
+		background: black;
+		border-radius: 100% / 50%;
+		
+		&__handle {
+			cursor: pointer;
+			position: absolute;
+			top: 50%; left: 50%;
+			transform: translate(-50%, -50%);
+			width: 3em;
+			height: 1.3em;
+			background: $switch-color;
+			border-radius: .3em;
+			box-shadow: inset -.5em 0 rgb(206, 148, 188);
+            &__animated {
+                animation: move-switch 10s linear 1;
+                @keyframes move-switch {
+                    10% { top: 50%; }
+                    15% { top: 87%; }
+                    58% { top: 87%; }
+                    59% { top: 10%; }
+                }
+            }
+        }
+	}
+}
+
+.toaster {
+    grid-area: toaster;
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+	transform: translatez(-7em);
+    &__animated {
+        animation: jump 10s linear 1;
+        @keyframes jump {
+            58% { margin-bottom: 0; }
+            59% { margin-bottom: 3.5em; }
+            63% { margin-bottom: 0; }
+        }
+    }
+}
+
+/* ------------------------------ */
+$toast-height: 10em;
+$toast-color: rgb(251, 186, 122);
+$crust-color: rgb(187, 95, 26);
+
+.toast {
+	height: $toast-height;
+	width: $toast-height;
+	background: $toast-color;
+	border-radius: 0 0 2em 2em;
+	position: absolute;
+	z-index: -1;
+    box-shadow: -1em 0 $crust-color;
+    &__animated {
+        animation: pop-toast 10s ease-in 1;
+        @keyframes pop-toast {
+            58% { transform: translateY(0);}
+            59% { transform: translateY(-14em); }
+            61% { transform: translateY(-14em); }
+            67% { transform: translateY(-4em); }
+            72% { transform: translateY(-4em); }
+            82% { transform: translateY(0); }
+        }
+    }
+	
+	&::before {
+		content: '';
+		position: absolute;
+		height: $toast-height / 3;
+		width: $toast-height * 1.3;
+		background-color: inherit;
+		left: -15%;
+		border-radius: 30% / 100%;
+		box-shadow: -1em 0 $crust-color;
+	}
+}
+

@@ -1,0 +1,41 @@
+
+.container {
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    color: #fff;
+    grid-template-columns: 0.5fr 1fr 0.5fr;
+    grid-template-rows: 0.35fr 1fr 0.5fr;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    grid-template-areas: 
+                        "message message message"
+                        "score1 toaster score2"
+                        ". query .";
+
+
+    @media (max-width: 800px){
+        grid-template-areas: "nav nav nav"
+                        "message message message"
+                        "score1 toaster score2"
+                        ". query .";
+        grid-template-rows: 0.15fr 0.35fr 1fr 0.5fr;
+    }
+}
+
+.logo {
+    position: absolute;
+    background-image: url('../assets/lucidica-logo.png');
+    background-size: cover;
+    background-position: center;
+    width: 30rem;
+    height: 5rem;
+    bottom: 15px;
+    right: 15px;
+    cursor: pointer;
+}
+
+
+

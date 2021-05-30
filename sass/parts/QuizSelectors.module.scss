@@ -1,0 +1,41 @@
+.selectors {
+    grid-area: selectors;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    @media (max-width: 520px){
+        flex-direction: column;
+    }
+    &__btns {
+        cursor: pointer;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 30rem;
+        height: 6.5rem;
+        padding: 1rem;
+        background-color: black;
+        border: 1px solid rgb(32, 32, 255);
+        color: #fff;
+        border-radius: 15px;
+        font-size: 2rem;
+        margin: 1rem;
+        font-weight: bold;
+        transition: all .0.2s ease-in;
+        &:hover {
+            border: 1px solid orange;
+        }
+        @media (max-width: 960px){
+            width: 20rem;
+        }
+        @media (max-width: 520px){
+            width: 30rem;
+        }
+    }
+}
+
+@keyframes buttonAppear {
+
+}
